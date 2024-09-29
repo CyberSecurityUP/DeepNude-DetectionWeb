@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nude Detection Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color: #fcfcfc;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+            width: 600px;
+            padding: 10px 30px 40px;
+            background-color: #ffffff;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .drop_box {
+            margin: 10px 0;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 3px dotted #a3a3a3;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .drop_box h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #2e2e2e;
+        }
+
+        .drop_box p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+
+        .btn {
+            text-decoration: none;
+            background-color: #005af0;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #005af0;
+            padding: 10px 20px;
+            border: none;
+            outline: 1px solid #010101;
+        }
+
+        .form input {
+            margin: 10px 0;
+            width: 100%;
+            background-color: #e2e2e2;
+            border: none;
+            outline: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+        }
+
+        .url_input {
+            margin: 10px 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px solid #a3a3a3;
+            border-radius: 5px;
+        }
+
+        .url_input h4 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #2e2e2e;
+            text-align: center;
+        }
+
+        .url_input input {
+            width: 100%;
+            background-color: #e2e2e2;
+            border: none;
+            outline: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h3>Nude Detection Tool</h3>
+            <form action="/detect" method="POST" enctype="multipart/form-data">
+                <div class="drop_box">
+                    <header>
+                        <h4>Select an image file to upload</h4>
+                    </header>
+                    <p>Supported formats: JPG, PNG, GIF</p>
+                    <input type="file" hidden accept=".jpg,.jpeg,.png,.gif" name="file" id="fileInput" style="display:none;">
+                    <button type="button" class="btn" id="fileButton">Choose File</button>
+                </div>
+
+                <div class="url_input">
+                    <h4>Or enter an image URL</h4>
+                    <input type="text" name="url" placeholder="Enter image URL here">
+                </div>
+                <button type="submit" class="btn" style="margin-top: 20px;">Detect</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileButton = document.getElementById('fileButton');
+
+        // Abre o seletor de arquivo ao clicar no botão
+        fileButton.onclick = () => {
+            fileInput.click();
+        };
+
+        // Atualiza o texto do botão após selecionar um arquivo
+        fileInput.addEventListener('change', function (e) {
+            const fileName = e.target.files[0].name;
+            fileButton.innerText = fileName;
+        });
+    </script>
+</body>
+</html>
