@@ -1,4 +1,4 @@
-# DeepNudeShield - Web Version
+# DeepNudeShield Detection - Web Version
 
 ## Overview
 
